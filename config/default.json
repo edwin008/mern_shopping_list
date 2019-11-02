@@ -1,4 +1,4 @@
 {
-  "mongoURI": "PUT_YOUR_MONGO_URI",
-  "jwtSecret": "sl_myJwtSecret"
+  "mongoURI": "mongodb://admin:designGraduate123@ds040027.mlab.com:40027/ecommerce-app",
+  "jwtSecret": "seniorDesign_Secret1"
 }
