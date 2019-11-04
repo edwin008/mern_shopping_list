@@ -11,7 +11,7 @@ const MakeAPurchase = ({ message = "YOUR BAG IS EMPTY" }) => (
     </div>
 );
 
-MakeAPurchase.PropTypes = {
+MakeAPurchase.propTypes = {
     message: PropTypes.string
 };
 

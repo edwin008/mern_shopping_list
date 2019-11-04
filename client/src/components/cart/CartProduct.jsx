@@ -27,7 +27,7 @@ const CartProduct = props => {
   );
 };
 
-CartProduct.PropTypes = {
+CartProduct.propTypes = {
   photo: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   amount: PropTypes.number.isRequired,

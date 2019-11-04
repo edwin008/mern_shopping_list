@@ -12,3 +12,8 @@ export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const GET_ERRORS = 'GET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+
+export const ADD_CART = 'ADD_CART';
+export const REMOVE_CART = 'REMOVE_CART';
+export const REMOVE_CART_TOTAL = 'REMOVE_CART_TOTAL';
+export const GRAB_ITEMS = 'GRAB_ITEMS';

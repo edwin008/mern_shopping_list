@@ -6,7 +6,7 @@ import CartProduct from './CartProduct';
 import MakeAPurchase from '../MakeAPurchase';
 
 class ShoppingCart extends Component {
-  static PropTypes = {
+  static propTypes = {
     addCart: PropTypes.func.isRequired,
     removeCart: PropTypes.func.isRequired,
     item: PropTypes.object.isRequired,
@@ -18,15 +18,20 @@ class ShoppingCart extends Component {
   };
 
   render() {
-    const cartProducts = sort(this.props.cart).map((item, j) => (
-      <CartProduct
-        key={j}
-        {...item}
-        addCart={() => this.props.addCart(item)}
-        removeCart={() => this.props.removeCart(item)}
-        removeCartTotal={() => this.props.removeCartTotal(item)}
-      />
-    ));
+    const arrange = product => {
+      return product.sort((x, y) => x._id < y._id);
+    };
+
+    const cartProducts =
+      arrange(this.props.cart).map((item, j) => (
+        <CartProduct
+          key={j}
+          {...item}
+          addCart={() => this.props.addCart(item)}
+          removeCart={() => this.props.removeCart(item)}
+          removeCartTotal={() => this.props.removeCartTotal(item)}
+        />
+      ));
 
     const totalCartPrice = cart => {
       return cart.reduce(
