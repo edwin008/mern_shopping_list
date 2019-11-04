@@ -10,6 +10,7 @@ import { loadUser } from './actions/authActions';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import Routes from './routes/Routes';
 
 class App extends Component {
   componentDidMount() {
@@ -25,6 +26,7 @@ class App extends Component {
             <ItemModal />
             <ShoppingList />
           </Container>
+          <Routes />
         </div>
       </Provider>
     );
