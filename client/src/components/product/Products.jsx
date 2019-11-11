@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { addCart } from '../../actions/shoppingCartActions';
 
 const Products = props => {
-  const ProductArray = props.products.map((item, j) => (
+
+  const productArray = props.products.map((item, j) => (
     <Product
       key={item._id}
       {...item}
@@ -13,13 +14,11 @@ const Products = props => {
     />
   ));
 
-  return (
+  return <div>
     <div>
-      <div>
-        {ProductArray}
-      </div>
+      {productArray}
     </div>
-  );
+  </div>;
 };
 
 Products.propTypes = {

@@ -7,12 +7,12 @@ const config = require('config');
 const db = config.get('mongoURI');
 mongoose.connect(db);
 
-fs.readFile('../datastore/ProductData.json', 'utf8', function (err, data) {
+fs.readFile('./datastore/ProductData.json', 'utf8', function (err, data) {
     if (err) console.log(err);
     var products = JSON.parse(data);
     for (let i = 0; i < products.length; i++) {
         var prod = new Product(products[i]);
-        prof.save(function (err) {
+        prod.save(function (err) {
             if (err) throw err;
         });
     }

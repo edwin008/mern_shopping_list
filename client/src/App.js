@@ -22,10 +22,10 @@ class App extends Component {
       <Provider store={store}>
         <div className='App'>
           <AppNavbar />
-          <Container>
+          {/* <Container>
             <ItemModal />
             <ShoppingList />
-          </Container>
+          </Container> */}
           <Routes />
         </div>
       </Provider>
