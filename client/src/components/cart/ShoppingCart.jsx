@@ -35,7 +35,7 @@ class ShoppingCart extends Component {
 
     const totalCartPrice = cart => {
       return cart.reduce(
-        (sum, items) => sum + items.amount * items.price, 0
+        (sum, items) => sum + items.amount * items.value, 0
       );
     };
 

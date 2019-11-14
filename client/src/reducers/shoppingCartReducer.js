@@ -10,17 +10,20 @@ const ShoppingCart_WithItem = (ShoppingCart, CartItem) => ShoppingCart.filter(Ca
 
 const AddCart = (ShoppingCart, CartItem) => {
   const cartProduct = ShoppingCart_WithItem(ShoppingCart, CartItem);
-  // const product = ShoppingCart
-  // console.log(product)
-  // let newCart = ShoppingCart.push(product);
-  // return newCart;
-  // return ([{
-  //   "name": "Florida Gators Baseball Jersey - Louis Accent",
-  //   "value": "60",
-  //   "image": "https://i.ibb.co/tQ3h1ZF/thumbnail-IMG-8576.jpg"
-  // }]);
-  return cartProduct === undefined ? [...ShoppingCart_NoItem(ShoppingCart, CartItem), { ...cartProduct, amount: 1 }]
-    : [...ShoppingCart_WithItem(ShoppingCart, CartItem), { ...cartProduct, amount: cartProduct.amount + 1 }]
+  // console.log(cartProduct);
+  // // const product = ShoppingCart
+  // // console.log(product)
+  // // let newCart = ShoppingCart.push(product);
+  // // return newCart;
+  // // return ([{
+  // //   "name": "Florida Gators Baseball Jersey - Louis Accent",
+  // //   "value": "60",
+  // //   "image": "https://i.ibb.co/tQ3h1ZF/thumbnail-IMG-8576.jpg"s
+  // // }]);
+  // return [...ShoppingCart, CartItem]
+  return cartProduct === undefined
+    ? [...ShoppingCart_NoItem(ShoppingCart, CartItem), { ...CartItem, amount: 1 }]
+    : [...ShoppingCart_NoItem(ShoppingCart, CartItem), { ...cartProduct, amount: cartProduct.amount + 1 }]
 };
 
 const RemoveCart = (ShoppingCart, CartItem) => {
