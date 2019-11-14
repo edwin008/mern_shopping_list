@@ -32,8 +32,7 @@ class AppNavbar extends Component {
   };
 
   aggregatedPrice = ShoppingCart => {
-    if (ShoppingCart)
-      return ShoppingCart.reduce((accumulator, CartProduct) => accumulator + CartProduct.price * CartProduct.amount, 0);
+    return ShoppingCart.reduce((accumulator, CartProduct) => accumulator + CartProduct.value * CartProduct.amount, 0);
   };
 
   render() {
@@ -76,7 +75,7 @@ class AppNavbar extends Component {
               <NavItem>
                 <NavLink href='/cart'>
                   <div>
-                    {/* <span>{this.props.cart.length}</span> */}
+                    <span>{this.props.cart.length}</span>
                     <i className="fa fa-shopping-bag" />
                     <p>Shopping Cart: ${this.aggregatedPrice(this.props.cart)}</p>
                   </div>

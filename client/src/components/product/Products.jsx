@@ -14,8 +14,8 @@ const Products = props => {
     />
   ));
 
-  return <div>
-    <div>
+  return <div className='container'>
+    <div className='wrapper'>
       {productArray}
     </div>
   </div>;

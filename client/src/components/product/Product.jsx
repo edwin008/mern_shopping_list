@@ -8,10 +8,10 @@ const Product = props => {
         <img src={props.image} alt={props.alt}></img>
       </div>
       <div>
-        <p>{props.productName}</p>
+        <p>{props.name}</p>
       </div>
       <div>
-        <small>${props.price}</small>
+        <small>${props.value}</small>
         <button onClick={props.addCart}>Add to Cart</button>
       </div>
     </div>
@@ -19,9 +19,9 @@ const Product = props => {
 };
 
 Product.propTypes = {
-  productName: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
   addCart: PropTypes.func.isRequired
 };
 

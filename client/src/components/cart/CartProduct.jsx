@@ -7,7 +7,7 @@ const CartProduct = props => {
       <tr>
         <td>
           <img
-            src={props.photo}
+            src={props.image}
             alt={props.name}
             className='CartProduct-Image'
           />
@@ -28,10 +28,10 @@ const CartProduct = props => {
 };
 
 CartProduct.propTypes = {
-  photo: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   amount: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
   addProduct: PropTypes.func.isRequired,
   removeProduct: PropTypes.func.isRequired
 };

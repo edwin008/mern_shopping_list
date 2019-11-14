@@ -11,15 +11,16 @@ class ProductPage extends Component {
 
   render() {
     return (
-      <main><Products products={this.props.products} /></main>
+      <div>
+        <main><Products products={this.props.products} /></main>
+      </div>
     )
   }
 }
-
-export default connect(mapStateToProps, { grabItems })(ProductPage);
 
 const mapStateToProps = state => ({
   products: state.products,
   cart: state.cart
 });
 
+export default connect(mapStateToProps, { grabItems })(ProductPage);
