@@ -1,4 +1,4 @@
-import { ADD_CART, REMOVE_CART, REMOVE_CART_TOTAL } from '../actions/types';
+import { ADD_CART, REMOVE_CART, REMOVE_CART_TOTAL, CLEAR_CART } from '../actions/types';
 
 const initialState = [];
 
@@ -35,6 +35,10 @@ const RemoveCartTotal = (ShoppingCart, CartItem) => {
   return [...ShoppingCart_NoItem(ShoppingCart, CartItem)]
 }
 
+const ClearCart = (ShoppingCart) => {
+  return ShoppingCart = initialState;
+}
+
 export default function (state = initialState, action) {
   switch (action.type) {
     case ADD_CART:
@@ -43,6 +47,8 @@ export default function (state = initialState, action) {
       return RemoveCart(state, action.payload);
     case REMOVE_CART_TOTAL:
       return RemoveCartTotal(state, action.payload);
+    case CLEAR_CART:
+      return ClearCart(state)
     default:
       return state;
   }

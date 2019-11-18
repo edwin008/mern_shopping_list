@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { addCart, removeCart, removeCartTotal } from '../../actions/shoppingCartActions';
 import CartProduct from './CartProduct';
@@ -27,8 +29,8 @@ class ShoppingCart extends Component {
         <CartProduct
           key={j}
           {...item}
-          addCart={() => this.props.addCart(item)}
-          removeCart={() => this.props.removeCart(item)}
+          addProduct={() => this.props.addCart(item)}
+          removeProduct={() => this.props.removeCart(item)}
           removeCartTotal={() => this.props.removeCartTotal(item)}
         />
       ));
@@ -65,6 +67,9 @@ class ShoppingCart extends Component {
                 <td />
                 <td />
                 <p classname="cart-totalPrice">${totalCartPrice(this.props.cart)}</p>
+                <Link to="/checkout" >
+                  <Button color="primary">Checkout</Button>
+                </Link>
               </tr>
             </tbody>
           </table>

@@ -18,7 +18,7 @@ const CartProduct = props => {
           <span className='CartProduct-Amount'>{props.amount}</span>
           <button onClick={props.addProduct}> + </button>
         </td>
-        <td>${props.price}</td>
+        <td>${props.value}</td>
         <td>
           <i className="fa fa-times" onClick={props.removeCartTotal} style={{ color: 'red', cursor: 'pointer' }}></i>
         </td>
