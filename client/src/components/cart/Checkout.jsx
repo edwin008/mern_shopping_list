@@ -26,36 +26,42 @@ class Checkout extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onOpenModal = e => {
-    e.preventDefault();
+  onOpenModal = () => {
+    console.log("OPEN MODAL CALLED");
     this.setState({ modalIsOpen: true });
-    console.log(this.state);
   };
 
   onCloseModal = () => {
     this.setState({ modalIsOpen: false });
   };
 
-  onSubmit = () => {
-    // console.log("The state is: " + this.state.name);
+  onSubmit = e => {
+    e.preventDefault();
+
     console.log('ON SUBMIT GOT CALLED');
-    // const entries = this.state.cart;
+
+    const entries = this.props.location.cartProps.cart;
+
+    console.log("------> ENRTRIES: " + JSON.stringify(entries));
+
     const itemsInCart = [];
-    // entries.map(item => {
-    //   itemsInCart.push(item);
-    // });
+    entries.map(item => {
+      let obj = {};
+      obj.name = item.name;
+      obj.value = item.value;
+      obj.amount = item.amount;
+      itemsInCart.push(obj);
+    });
+    const newOrder = {
+      name: this.state.name,
+      email: this.state.email,
+      phoneNumber: this.state.phoneNumber,
+      cart: itemsInCart
+    };
 
-    // const newOrder = {
-    //   name: this.state.name,
-    //   email: this.state.email,
-    //   phoneNumber: this.state.email,
-    //   cart: itemsInCart
-    // };
+    this.props.addOrder(newOrder);
 
-    // console.log('PRINTING THE NEW_ORDER');
-    // console.log(newOrder);
-
-    // this.props.addOrder(newOrder);
+    this.onOpenModal();
   };
 
   render() {
@@ -70,7 +76,7 @@ class Checkout extends Component {
             <input type="text" name="name" placeholder="Name" onChange={this.onChange} />
             <input type="email" name="email" placeholder="Email" onChange={this.onChange} />
             <input type="text" name="phoneNumber" placeholder="Phone Number" onChange={this.onChange} />
-            <Button color="primary" onClick={this.onOpenModal, this.onSubmit}>Place Order</Button>
+            <Button color="primary" onClick={this.onSubmit}>Place Order</Button>
           </form>
         </div>
         <div>

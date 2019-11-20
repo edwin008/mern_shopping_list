@@ -5,7 +5,7 @@ export const grabItems = () => async dispatch => {
   try {
     const response = await axios("api/products/");
     console.log(response.data);
-    console.log('Edwin');
+    // console.log('Edwin');
     dispatch({
       type: GRAB_ITEMS,
       payload: response.data.product
