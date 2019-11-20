@@ -1,16 +1,25 @@
 import React, { Fragment } from 'react';
+import AwesomeSlider from 'react-awesome-slider';
+import 'react-awesome-slider/dist/styles.css';
 import PropTypes from 'prop-types';
 
 const CartProduct = props => {
+
+  // console.log("This is item: " + JSON.stringify(props.image));
+  const productImageArray = props.image.map(image => (
+    <div data-src={image} />
+  ));
+
   return (
     <Fragment>
       <tr>
         <td>
-          <img
+          <AwesomeSlider>{productImageArray}</AwesomeSlider>
+          {/* <img
             src={props.image}
             alt={props.name}
             className='CartProduct-Image'
-          />
+          /> */}
         </td>
         <td>{props.name}</td>
         <td>

@@ -2,21 +2,17 @@
   {
     "name": "Florida Gators Baseball Jersey - Louis Accent",
     "value": "60",
-    "image": "https://i.ibb.co/tQ3h1ZF/thumbnail-IMG-8576.jpg"
-  },
-  {
-    "name": "Florida Gators Baseball Jersey - Louis Accent 2",
-    "value": "60",
-    "image": "https://i.ibb.co/j3LcTH2/thumbnail-IMG-8579.jpg"
+    "image": [
+      "https://i.ibb.co/tQ3h1ZF/thumbnail-IMG-8576.jpg",
+      "https://i.ibb.co/j3LcTH2/thumbnail-IMG-8579.jpg"
+    ]
   },
   {
     "name": "New York Yankees Baseball Jersey - Louis Accent",
     "value": "100",
-    "image": "https://i.ibb.co/rZDGZny/thumbnail-IMG-8577.jpg"
-  },
-  {
-    "name": "New York Yankees Baseball Jersey - Louis Accent 2",
-    "value": "100",
-    "image": "https://i.ibb.co/pzCrm0S/thumbnail-IMG-8578.jpg"
+    "image": [
+      "https://i.ibb.co/rZDGZny/thumbnail-IMG-8577.jpg",
+      "https://i.ibb.co/pzCrm0S/thumbnail-IMG-8578.jpg"
+    ]
   }
 ]
