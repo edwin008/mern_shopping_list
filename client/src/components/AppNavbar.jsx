@@ -69,9 +69,9 @@ class AppNavbar extends Component {
             <NavbarBrand href='/'>21 Jersey Fits</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className='ml-auto' navbar>
+              {/* <Nav className='ml-auto' navbar>
                 {isAuthenticated ? authLinks : guestLinks}
-              </Nav>
+              </Nav> */}
               <NavItem>
                 <NavLink href='/cart'>
                   <div>
