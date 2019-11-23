@@ -1,38 +1,53 @@
-import React from 'react';
+import React, { setState } from 'react';
+import { connect } from 'react-redux';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
+import './Product.css';
 import PropTypes from 'prop-types';
-
-const slider = (
-
-  <AwesomeSlider>
-    <div data-src="https://i.ibb.co/tQ3h1ZF/thumbnail-IMG-8576.jpg" />
-    <div data-src="https://i.ibb.co/j3LcTH2/thumbnail-IMG-8579.jpg" />
-  </AwesomeSlider>
-);
+import { Card, Image, Button, Segment } from 'semantic-ui-react';
+import { addSize } from '../../actions/productActions';
 
 
 const Product = item => {
-  console.log("This is item: " + JSON.stringify(item.image));
+
   const productImageArray = item.image.map(image => (
     <div data-src={image} />
   ));
 
+  const changeSize = size => {
+    addSize(item, size);
+    console.log(item.size);
+  };
+
   return (
-    <div>
-      <div>
-        <AwesomeSlider>{productImageArray}</AwesomeSlider>
-        {/* <img src={props.image} alt={props.alt}></img> */}
-      </div>
-      {/* <div>
-        {slider}
-      </div> */}
-      <div>
-        <p>{item.name}</p>
-      </div>
-      <div>
-        <small>${item.value}</small>
-        <button onClick={item.addCart}>Add to Cart</button>
+    <div className="product-wrap">
+      <div className="product">
+        <Card className='card-wrap'>
+          <Image>
+            <AwesomeSlider className='aws-btn' bullets={false}>{productImageArray}</AwesomeSlider>
+          </Image>
+          <Card.Header textAlign='center'>
+            <div>
+              <p>{item.name}</p>
+            </div>
+          </Card.Header>
+          <Card.Meta className="card-meta">
+            <small>${item.value}</small>
+          </Card.Meta>
+          <Card.Description className="card-description-wrap">
+            <div class="ui buttons">
+              <button className="ui-buttons" class="ui button" onClick={() => changeSize("WE MADE IT")}>S</button>
+              <button className="ui-buttons" class="ui button" >M</button>
+              <button className="ui-buttons" class="ui button" >L</button>
+              {/* <button className="ui-buttons" class="ui button" onClick={item.addSize(item, "XL")}>XL</button> */}
+            </div>
+          </Card.Description>
+          <Card.Content>
+            <div>
+              <button class="ui primary button" onClick={item.addCart} size="small">Add to Cart</button>
+            </div>
+          </Card.Content>
+        </Card>
       </div>
     </div>
   );
@@ -42,7 +57,15 @@ Product.propTypes = {
   name: PropTypes.string.isRequired,
   image: PropTypes.array.isRequired,
   value: PropTypes.number.isRequired,
+  size: PropTypes.string,
+  addSize: PropTypes.func.isRequired,
   addCart: PropTypes.func.isRequired
 };
 
-export default Product;
+const mapStateToProps = state => ({
+  products: state.product
+});
+
+export default connect(mapStateToProps, { addSize })(Product);
+
+// export default Product;

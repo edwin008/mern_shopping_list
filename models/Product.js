@@ -13,6 +13,10 @@ const productSchema = new Schema({
   image: {
     type: Array,
     required: true
+  },
+  size: {
+    type: String,
+    required: true
   }
 });
 

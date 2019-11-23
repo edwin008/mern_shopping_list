@@ -19,3 +19,4 @@ export const REMOVE_CART_TOTAL = 'REMOVE_CART_TOTAL';
 export const CLEAR_CART = 'CLEAR_CART';
 export const GRAB_ITEMS = 'GRAB_ITEMS';
 export const ADD_ORDER = 'ADD_ORDER';
+export const ADD_SIZE = 'ADD_SIZE';

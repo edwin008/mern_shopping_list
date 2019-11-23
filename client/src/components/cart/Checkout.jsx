@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
@@ -7,6 +6,7 @@ import { connect } from 'react-redux';
 import { clearCart } from '../../actions/shoppingCartActions';
 import { addOrder } from '../../actions/orderActions';
 import MakeAPurchase from '../MakeAPurchase';
+import { Button, Checkbox, Form } from 'semantic-ui-react'
 
 class Checkout extends Component {
 
@@ -49,6 +49,7 @@ class Checkout extends Component {
       let obj = {};
       obj.name = item.name;
       obj.value = item.value;
+      obj.size = item.size;
       obj.amount = item.amount;
       itemsInCart.push(obj);
     });
@@ -71,13 +72,24 @@ class Checkout extends Component {
       <div>
         <div>
           <h1>Checkout</h1>
-          {/* <form onSubmit={this.onSubmit}> */}
-          <form>
-            <input type="text" name="name" placeholder="Name" onChange={this.onChange} />
+          <Form>
+            <Form.Field>
+              <label>Name</label>
+              <input type="text" size="mini" name="name" placeholder="First Last" onChange={this.onChange} />
+            </Form.Field>
+            <Form.Field>
+              <label>Email</label>
+              <input type="email" name="email" placeholder="Email" onChange={this.onChange} />
+            </Form.Field>
+            <Form.Field>
+              <label>Phone Number</label>
+              <input type="text" name="phoneNumber" placeholder="XXX-XXX-XXXX" onChange={this.onChange} />
+            </Form.Field>
+            {/* <input type="text" name="name" placeholder="Name" onChange={this.onChange} />
             <input type="email" name="email" placeholder="Email" onChange={this.onChange} />
-            <input type="text" name="phoneNumber" placeholder="Phone Number" onChange={this.onChange} />
-            <Button color="primary" onClick={this.onSubmit}>Place Order</Button>
-          </form>
+            <input type="text" name="phoneNumber" placeholder="Phone Number" onChange={this.onChange} /> */}
+            <Button type="submit" onClick={this.onSubmit}>Place Order</Button>
+          </Form>
         </div>
         <div>
           <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.onCloseModal} ariaHideApp={false}>

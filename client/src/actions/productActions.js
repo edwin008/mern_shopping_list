@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GRAB_ITEMS } from './types';
+import { GRAB_ITEMS, ADD_SIZE } from './types';
 
 export const grabItems = () => async dispatch => {
   try {
@@ -14,3 +14,9 @@ export const grabItems = () => async dispatch => {
     console.log(error);
   }
 };
+
+export const addSize = (item, prodSize) => ({
+  type: ADD_SIZE,
+  payload: item,
+  size: prodSize
+});

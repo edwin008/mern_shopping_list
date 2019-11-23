@@ -24,6 +24,10 @@ const orderSchema = new Schema({
         type: Number,
         required: true
       },
+      size: {
+        type: String,
+        required: true
+      },
       amount: {
         type: Number,
         required: true
