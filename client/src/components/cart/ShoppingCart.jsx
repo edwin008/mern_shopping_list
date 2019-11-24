@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import { addCart, removeCart, removeCartTotal } from '../../actions/shoppingCartActions';
 import CartProduct from './CartProduct';
 import MakeAPurchase from '../MakeAPurchase';
+import './ShoppingCart.css';
+import { Segment } from 'semantic-ui-react';
 
 class ShoppingCart extends Component {
   static propTypes = {
@@ -45,40 +47,44 @@ class ShoppingCart extends Component {
       return <MakeAPurchase />
 
     return (
-      <div>
-        <div>
-          <h1 className="bag-title">My Bag:</h1>
-        </div>
-        <div className="cart-items">
-          <table className="cart-table">
-            <thead>
-              <tr>
-                <th>Photo</th>
-                <th>Name</th>
-                <th>Quantity</th>
-                <th>Price / Unit</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {cartProducts}
-              <tr>
-                <td>Total</td>
-                <td />
-                <td />
-                <p classname="cart-totalPrice">${totalCartPrice(this.props.cart)}</p>
-                <Link to={{
-                  pathname: "/checkout",
-                  cartProps: {
-                    cart: this.props.cart
-                  }
-                }} >
-                  <Button color="primary">Checkout</Button>
-                </Link>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="container-segment">
+        <center>
+          <h1 class="bag-title">My Bag:</h1>
+        </center>
+        <Segment placeholder>
+          <div class="container-segment2">
+            <center>
+              <table className="cart-table">
+                <thead>
+                  <tr>
+                    <th id="table-photo">Photo</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price / Unit</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cartProducts}
+                  <tr>
+                    <td />
+                    <td />
+                    <td />
+                    <p classname="cart-totalPrice">Total: ${totalCartPrice(this.props.cart)}</p>
+                    <Link to={{
+                      pathname: "/checkout",
+                      cartProps: {
+                        cart: this.props.cart
+                      }
+                    }} >
+                      <Button color="primary">Checkout</Button>
+                    </Link>
+                  </tr>
+                </tbody>
+              </table>
+            </center>
+          </div>
+        </Segment>
       </div>
     );
   };

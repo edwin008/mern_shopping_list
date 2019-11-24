@@ -8,16 +8,17 @@ import { Card, Image, Button, Segment } from 'semantic-ui-react';
 import { addSize } from '../../actions/productActions';
 
 
-const Product = item => {
+const Product = (props) => {
+  const item = props.item;
 
   const productImageArray = item.image.map(image => (
     <div data-src={image} />
   ));
 
-  const changeSize = size => {
-    addSize(item, size);
-    console.log(item.size);
-  };
+  // const changeSize = size => {
+  //   addSize(item, size);
+  //   console.log(item.size);
+  // };
 
   return (
     <div className="product-wrap">
@@ -36,15 +37,15 @@ const Product = item => {
           </Card.Meta>
           <Card.Description className="card-description-wrap">
             <div class="ui buttons">
-              <button className="ui-buttons" class="ui button" onClick={() => changeSize("WE MADE IT")}>S</button>
-              <button className="ui-buttons" class="ui button" >M</button>
-              <button className="ui-buttons" class="ui button" >L</button>
-              {/* <button className="ui-buttons" class="ui button" onClick={item.addSize(item, "XL")}>XL</button> */}
+              <button className="ui-buttons" class="ui button" onClick={() => props.updateSize(item._id, "S")}>S</button>
+              <button className="ui-buttons" class="ui button" onClick={() => props.updateSize(item._id, "M")}>M</button>
+              <button className="ui-buttons" class="ui button" onClick={() => props.updateSize(item._id, "L")}>L</button>
+              <button className="ui-buttons" class="ui button" onClick={() => props.updateSize(item._id, "XL")}>XL</button>
             </div>
           </Card.Description>
           <Card.Content>
             <div>
-              <button class="ui primary button" onClick={item.addCart} size="small">Add to Cart</button>
+              <button class="ui primary button" onClick={props.addCart} size="small">Add to Cart</button>
             </div>
           </Card.Content>
         </Card>
@@ -54,12 +55,14 @@ const Product = item => {
 };
 
 Product.propTypes = {
-  name: PropTypes.string.isRequired,
-  image: PropTypes.array.isRequired,
-  value: PropTypes.number.isRequired,
-  size: PropTypes.string,
-  addSize: PropTypes.func.isRequired,
-  addCart: PropTypes.func.isRequired
+  item: PropTypes.object.isRequired,
+  // name: PropTypes.string.isRequired,
+  // image: PropTypes.array.isRequired,
+  // value: PropTypes.number.isRequired,
+  // size: PropTypes.string,
+  addSize: PropTypes.func,
+  addCart: PropTypes.func.isRequired,
+  updateSize: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

@@ -1,0 +1,27 @@
+#cart-link{
+    position: relative;
+    left: 75%;
+    height: 6em;
+}
+
+.navbard-wrap{
+    justify-content: space-around!important;
+}
+/* 
+.cart-link-wrap{
+    padding-bottom: 25px;
+} */
+
+/* .cart-count-wrap{
+    position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  text-align: center;
+  color: #fff;
+  background-color: #a864a8;
+  font-size: 9px;
+  line-height: 14px;
+  top: -5px;
+  left: 13px;
+} */

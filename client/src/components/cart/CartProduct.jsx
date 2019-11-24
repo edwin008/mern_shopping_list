@@ -6,20 +6,16 @@ import PropTypes from 'prop-types';
 const CartProduct = props => {
 
   // console.log("This is item: " + JSON.stringify(props.image));
-  const productImageArray = props.image.map(image => (
-    <div data-src={image} />
-  ));
+  // const productImageArray = props.image.map(image => (
+  //   <div data-src={image} />
+  // ));
 
   return (
     <Fragment>
       <tr>
         <td>
-          <AwesomeSlider>{productImageArray}</AwesomeSlider>
-          {/* <img
-            src={props.image}
-            alt={props.name}
-            className='CartProduct-Image'
-          /> */}
+          {/* <AwesomeSlider bullets={false}>{productImageArray}</AwesomeSlider> */}
+          <img src={props.image[0]} style={{ height: '12.5%' }} />
         </td>
         <td>{props.name}</td>
         <td>

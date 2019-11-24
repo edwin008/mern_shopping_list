@@ -75,19 +75,16 @@ class Checkout extends Component {
           <Form>
             <Form.Field>
               <label>Name</label>
-              <input type="text" size="mini" name="name" placeholder="First Last" onChange={this.onChange} />
+              <input type="text" size="mini" name="name" placeholder="First Last" onChange={this.onChange} required />
             </Form.Field>
             <Form.Field>
               <label>Email</label>
-              <input type="email" name="email" placeholder="Email" onChange={this.onChange} />
+              <input type="email" name="email" placeholder="Email" onChange={this.onChange} required />
             </Form.Field>
             <Form.Field>
               <label>Phone Number</label>
-              <input type="text" name="phoneNumber" placeholder="XXX-XXX-XXXX" onChange={this.onChange} />
+              <input type="text" name="phoneNumber" placeholder="XXX-XXX-XXXX" onChange={this.onChange} required />
             </Form.Field>
-            {/* <input type="text" name="name" placeholder="Name" onChange={this.onChange} />
-            <input type="email" name="email" placeholder="Email" onChange={this.onChange} />
-            <input type="text" name="phoneNumber" placeholder="Phone Number" onChange={this.onChange} /> */}
             <Button type="submit" onClick={this.onSubmit}>Place Order</Button>
           </Form>
         </div>

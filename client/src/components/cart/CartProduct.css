@@ -1,0 +1,22 @@
+/* .aws-btn {
+    /* height: 100!important;
+--slider-height-percentage: 60%!important;
+--slider-transition-duration: 700ms!important;
+--organic-arrow-thickness: 6px!important;
+--organic-arrow-border-radius: 0px!important;
+--organic-arrow-height: 15px!important;
+--organic-arrow-color: #d5d5d5!important;
+--control-button-width: 10%!important;
+--control-button-height: 25%!important;
+--control-button-background: transparent!important;
+--control-bullet-color: #fafafa!important;
+--control-bullet-active-color: #d5d5d5!important;
+--loader-bar-color: #851515!important;
+--loader-bar-height: 6px!important; 
+} */
+
+#image-wrapper{
+    /* position: relative; */
+    height: 50px;
+    width: 25px;
+}

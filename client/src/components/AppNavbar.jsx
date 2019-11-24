@@ -10,10 +10,12 @@ import {
   Container
 } from 'reactstrap';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import RegisterModal from './auth/RegisterModal';
 import LoginModal from './auth/LoginModal';
 import Logout from './auth/Logout';
+import './AppNavbar.css';
 
 
 class AppNavbar extends Component {
@@ -63,28 +65,34 @@ class AppNavbar extends Component {
     );
 
     return (
-      <div>
-        <Navbar color='dark' dark expand='sm' className='mb-5'>
-          <Container>
-            <NavbarBrand href='/'>21 Jersey Fits</NavbarBrand>
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className='ml-auto' navbar>
+      <Navbar style={{ background: '#000', height: 85 }} dark expand='sm' variant='dark' class='navbar-wrap'>
+        <Container>
+          <NavbarBrand href='/'>
+            <img
+              src="/21JerseyFits.ico"
+              width="75"
+              height="75"
+              className="d-inline-block align-top"
+              alt="21JerseyFits logo"
+            />
+          </NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            {/* <Nav className='ml-auto' navbar>
                 {isAuthenticated ? authLinks : guestLinks}
-              </Nav>
-              <NavItem>
-                <NavLink href='/cart'>
-                  <div>
-                    <span>{this.props.cart.length}</span>
-                    <i className="fa fa-shopping-bag" />
-                    <p>Shopping Cart: ${this.aggregatedPrice(this.props.cart)}</p>
-                  </div>
-                </NavLink>
-              </NavItem>
-            </Collapse>
-          </Container>
-        </Navbar>
-      </div>
+              </Nav> */}
+            <NavItem id="cart-link">
+              <NavLink class="cart-link-wrap" href='/cart'>
+                <div>
+                  <span class="cart-count-wrap">{this.props.cart.length}</span>
+                  <i className="fa fa-shopping-bag" />
+                  <p>Shopping Cart: ${this.aggregatedPrice(this.props.cart)}</p>
+                </div>
+              </NavLink>
+            </NavItem>
+          </Collapse>
+        </Container>
+      </Navbar>
     );
   }
 }
