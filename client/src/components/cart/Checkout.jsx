@@ -45,7 +45,7 @@ class Checkout extends Component {
 
     const errors = [];
 
-    var phoneno = /^\d{10}$/;
+    var phoneno = /^\d{9}$/;
 
     if (name.length === 0) {
       errors.push("Name can't be empty");
@@ -199,15 +199,11 @@ class Checkout extends Component {
           {/* <center> */}
           {/* <Modal open={this.state.modalIsOpen} onClose={this.onCloseModal, this.props.clearCart} basic centered={true} size="small"> */}
           <Modal open={this.state.modalIsOpen} onClose={this.onCloseModal} basic centered={true} size="small" style={{ marginLeft: '30%', marginTop: '15%' }}>
-            {/* <Link to="/">
-              <i className="fa fa-times" onClick={this.onCloseModal, this.props.clearCart} style={{ color: 'red', cursor: 'pointer' }}></i>
-            </Link> */}
             <Header icon='shopping bag' content='Thanks for Shopping!' />
             <Modal.Content>
               <p>Thank You, {this.state.name}! Your order has been completed. We will be in contact with you shortly to finalize your order!</p>
             </Modal.Content>
             <Modal.Actions>
-              {/* <Button color='green' onClick={this.onCloseModal, this.props.clearCart} inverted> */}
               <Button color='green' onClick={this.onCloseModal} inverted>
                 <Link to="/">
                   <Icon name='hand peace' /> See ya!
