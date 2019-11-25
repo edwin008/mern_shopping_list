@@ -16,6 +16,7 @@ class Checkout extends Component {
     email: "",
     phoneNumber: 0,
     errorsList: [],
+    renderErrorList: false,
     modalIsOpen: false
   };
 
@@ -58,9 +59,9 @@ class Checkout extends Component {
       errors.push("Email should contain at least one dot");
     }
 
-    if (!phoneNumber.match(phoneno)) {
-      errors.push("Phone Number should be at least 10 numbers long and of type number");
-    }
+    // if (!phoneNumber.match(phoneno)) {
+    //   errors.push("Phone Number should be at least 10 numbers long and of type number");
+    // }
 
     return errors;
   }
@@ -71,27 +72,32 @@ class Checkout extends Component {
     if (errors.length > 0) {
       errors.map(err => {
         this.state.errorsList.push(err);
-      })
-      // return (
-      //   // <div class="ui error message" >
-      //   //   <i class="close icon"></i>
-      //   //   <div class="header">
-      //   //     There were some errors with your submission
-      //   //   </div>
-      //   //   <ul class="list">
-      //   //     <li>{this.state.errorsList}</li>
-      //   //   </ul>
-      //   // </div>
-      //   alert(this.state.errorsList)
-      // );
+      });
+      this.setState({ renderErrorList: true });
     } else {
       this.onSubmit(e);
     }
 
   };
 
-  renderErrors = () => {
-    if (this.state.errorsList) {
+  clearErrorListState = () => {
+    if (this.state.errorsList.length > 0) {
+      this.setState({ errorsList: [] });
+    }
+  }
+
+  renderErrorBullets = () => {
+    const erroBulletArray = this.state.errorsList.map(error => (
+      <li>{error}</li>
+    ));
+
+    return (
+      erroBulletArray
+    )
+  }
+
+  renderErrors = renderList => {
+    if (renderList) {
       return (
         <div class="ui error message" >
           <i class="close icon"></i>
@@ -99,7 +105,7 @@ class Checkout extends Component {
             There were some errors with your submission
           </div>
           <ul class="list">
-            <li>{this.state.errorsList}</li>
+            {this.renderErrorBullets()}
           </ul>
         </div>
       );
@@ -144,7 +150,7 @@ class Checkout extends Component {
       <div class='container-segment-1'>
         <div>
           <center>
-            {this.renderErrors}
+            {this.renderErrors(this.state.renderErrorList)}
           </center>
           <center>
             <h1>Checkout</h1>
