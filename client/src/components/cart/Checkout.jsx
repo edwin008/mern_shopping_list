@@ -41,6 +41,8 @@ class Checkout extends Component {
   validate = (name, email, phoneNumber) => {
     // we are going to store errors for all fields
     // in a signle array
+    this.clearErrorListState();
+
     const errors = [];
 
     var phoneno = /^\d{10}$/;
@@ -59,9 +61,13 @@ class Checkout extends Component {
       errors.push("Email should contain at least one dot");
     }
 
-    // if (!phoneNumber.match(phoneno)) {
-    //   errors.push("Phone Number should be at least 10 numbers long and of type number");
-    // }
+    if (phoneNumber) {
+      if (phoneNumber.match(phoneno)) {
+        errors.push("Phone Number should be at least 10 numbers long and of type number");
+      }
+    } else {
+      errors.push("Please provide a phone number");
+    }
 
     return errors;
   }
@@ -86,6 +92,11 @@ class Checkout extends Component {
     }
   }
 
+  closeErrorMessage = () => {
+    this.clearErrorListState();
+    this.setState({ renderErrorList: false });
+  }
+
   renderErrorBullets = () => {
     const erroBulletArray = this.state.errorsList.map(error => (
       <li>{error}</li>
@@ -100,7 +111,7 @@ class Checkout extends Component {
     if (renderList) {
       return (
         <div class="ui error message" >
-          <i class="close icon"></i>
+          <i class="close icon" onClick={this.closeErrorMessage}></i>
           <div class="header">
             There were some errors with your submission
           </div>
