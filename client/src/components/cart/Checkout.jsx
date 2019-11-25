@@ -14,8 +14,8 @@ class Checkout extends Component {
   state = {
     name: "",
     email: "",
-    phoneNumber: "",
-    errorsList: "empty",
+    phoneNumber: 0,
+    errorsList: [],
     modalIsOpen: false
   };
 
@@ -42,6 +42,8 @@ class Checkout extends Component {
     // in a signle array
     const errors = [];
 
+    var phoneno = /^\d{10}$/;
+
     if (name.length === 0) {
       errors.push("Name can't be empty");
     }
@@ -56,12 +58,8 @@ class Checkout extends Component {
       errors.push("Email should contain at least one dot");
     }
 
-    if (phoneNumber.length < 10) {
-      errors.push("Phone Number should be at least 10 numbers long");
-    }
-
-    if (typeof phoneNumber == 'number') {
-      errors.push("Phone Number must be a number");
+    if (!phoneNumber.match(phoneno)) {
+      errors.push("Phone Number should be at least 10 numbers long and of type number");
     }
 
     return errors;
@@ -71,13 +69,31 @@ class Checkout extends Component {
   handleSubmit = e => {
     const errors = this.validate(this.state.name, this.state.email, this.state.phoneNumber);
     if (errors.length > 0) {
-      console.log('MADE IT TO ERRORS');
-      console.log('------->PRINTING ERRORS: ' + errors);
-      this.setState({ errorsList: errors });
+      errors.map(err => {
+        this.state.errorsList.push(err);
+      })
+      // return (
+      //   // <div class="ui error message" >
+      //   //   <i class="close icon"></i>
+      //   //   <div class="header">
+      //   //     There were some errors with your submission
+      //   //   </div>
+      //   //   <ul class="list">
+      //   //     <li>{this.state.errorsList}</li>
+      //   //   </ul>
+      //   // </div>
+      //   alert(this.state.errorsList)
+      // );
+    } else {
+      this.onSubmit(e);
+    }
 
-      console.log('-------->PRINTTING STATE ERRORS:' + this.state.errors);
+  };
+
+  renderErrors = () => {
+    if (this.state.errorsList) {
       return (
-        <div class="ui error message">
+        <div class="ui error message" >
           <i class="close icon"></i>
           <div class="header">
             There were some errors with your submission
@@ -87,11 +103,8 @@ class Checkout extends Component {
           </ul>
         </div>
       );
-    } else {
-      this.onSubmit(e);
     }
-
-  };
+  }
 
 
   onSubmit = e => {
@@ -130,6 +143,9 @@ class Checkout extends Component {
     return (
       <div class='container-segment-1'>
         <div>
+          <center>
+            {this.renderErrors}
+          </center>
           <center>
             <h1>Checkout</h1>
           </center>
