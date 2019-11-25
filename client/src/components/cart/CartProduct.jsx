@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
 import PropTypes from 'prop-types';
+import { Popup } from 'semantic-ui-react';
 
 const CartProduct = props => {
 
@@ -12,23 +13,35 @@ const CartProduct = props => {
 
   return (
     <Fragment>
-      <tr>
+      <br />
+      <tr id="row-wrap" >
         <td>
           {/* <AwesomeSlider bullets={false}>{productImageArray}</AwesomeSlider> */}
-          <img src={props.image[0]} style={{ height: '12.5%' }} />
+          <img src={props.image[0]} style={{ height: '12.5%', paddingLeft: '25%' }} />
         </td>
-        <td>{props.name}</td>
+        <td style={{ textAlign: 'center' }}>{props.name}</td>
         <td>
-          <button onClick={props.removeProduct}> - </button>
-          <span className='CartProduct-Amount'>{props.amount}</span>
-          <button onClick={props.addProduct}> + </button>
+          <center>
+            {/* <button onClick={props.removeProduct}> - </button> */}
+            <i class="minus icon" onClick={props.removeProduct} style={{ color: '#077BFF', cursor: 'pointer' }}></i>
+            <span className='CartProduct-Amount'><b>{props.amount}  </b></span>
+            {/* <button onClick={props.addProduct}> + </button> */}
+            <i class="plus icon" onClick={props.addProduct} style={{ color: '#077BFF', cursor: 'pointer' }}></i>
+          </center>
         </td>
-        <td>${props.value}</td>
+        <td><center>${props.value}</center></td>
         <td>
-          <i className="fa fa-times" onClick={props.removeCartTotal} style={{ color: 'red', cursor: 'pointer' }}></i>
+          <Popup content='Remove all items from this section' trigger={
+            <i className="fa fa-times" onClick={props.removeCartTotal} style={{ color: 'red', cursor: 'pointer' }} />
+          }
+            position='bottom left'
+            size='mini'
+            inverted
+            mouseEnterDelay={1000}
+          />
         </td>
-      </tr>
-    </Fragment>
+      </tr >
+    </Fragment >
   );
 };
 

@@ -20,3 +20,12 @@
     height: 50px;
     width: 25px;
 }
+
+#row-wrap{
+    border-bottom-style: solid;
+    padding-bottom: 600px;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+}

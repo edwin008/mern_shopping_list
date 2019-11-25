@@ -49,7 +49,7 @@ class ShoppingCart extends Component {
     return (
       <div class="container-segment">
         <center>
-          <h1 class="bag-title">My Bag:</h1>
+          <h1 class="bag-title">My Cart:</h1>
         </center>
         <Segment placeholder>
           <div class="container-segment2">
@@ -57,10 +57,10 @@ class ShoppingCart extends Component {
               <table className="cart-table">
                 <thead>
                   <tr>
-                    <th id="table-photo">Photo</th>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                    <th>Price / Unit</th>
+                    <th id="table-item">Photo</th>
+                    <th id="table-item">Name</th>
+                    <th id="table-item">Quantity</th>
+                    <th id="table-item">Price / Unit</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -77,7 +77,7 @@ class ShoppingCart extends Component {
                         cart: this.props.cart
                       }
                     }} >
-                      <Button color="primary">Checkout</Button>
+                      <button class="ui primary button">Checkout</button>
                     </Link>
                   </tr>
                 </tbody>

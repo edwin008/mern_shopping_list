@@ -37,6 +37,10 @@ class AppNavbar extends Component {
     return ShoppingCart.reduce((accumulator, CartProduct) => accumulator + CartProduct.value * CartProduct.amount, 0);
   };
 
+  aggregatedProdsInCart = ShoppingCart => {
+    return ShoppingCart.reduce((accumulator, CartProduct) => accumulator + CartProduct.amount, 0);
+  };
+
   render() {
     const { isAuthenticated, user } = this.props.auth;
 
@@ -84,8 +88,8 @@ class AppNavbar extends Component {
             <NavItem id="cart-link">
               <NavLink class="cart-link-wrap" href='/cart'>
                 <div>
-                  <span class="cart-count-wrap">{this.props.cart.length}</span>
-                  <i className="fa fa-shopping-bag" />
+                  <span class="cart-count-wrap">{this.aggregatedProdsInCart(this.props.cart)}</span>
+                  <i className="fas fa-shopping-cart" />
                   <p>Shopping Cart: ${this.aggregatedPrice(this.props.cart)}</p>
                 </div>
               </NavLink>

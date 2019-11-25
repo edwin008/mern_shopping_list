@@ -1,0 +1,14 @@
+.container-segment-1{
+    /* background-color: black;  */
+    position: relative;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.container-segment2{
+    position: center;
+}
+
+.dimmed.dimmable > .ui.modals.dimmer.visible {
+  display: flex !important;
+}
