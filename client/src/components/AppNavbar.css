@@ -7,8 +7,8 @@
 .navbard-wrap{
     justify-content: space-around!important;
 }
-/* 
-.cart-link-wrap{
-    padding-bottom: 25px;
-} */
+
+.cart-link-parent-wrap:hover {
+  transform: scale(1.9);
+}
 

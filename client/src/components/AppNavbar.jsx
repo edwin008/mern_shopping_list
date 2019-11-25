@@ -9,6 +9,7 @@ import {
   NavLink,
   Container
 } from 'reactstrap';
+import { Popup } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -85,15 +86,24 @@ class AppNavbar extends Component {
             {/* <Nav className='ml-auto' navbar>
                 {isAuthenticated ? authLinks : guestLinks}
               </Nav> */}
-            <NavItem id="cart-link">
-              <NavLink class="cart-link-wrap" href='/cart'>
-                <div>
-                  <span class="cart-count-wrap">{this.aggregatedProdsInCart(this.props.cart)}</span>
-                  <i className="fas fa-shopping-cart" />
-                  <p>Shopping Cart: ${this.aggregatedPrice(this.props.cart)}</p>
-                </div>
-              </NavLink>
-            </NavItem>
+            <Popup content='Click here to check your Shopping Cart!'
+              trigger={
+                <NavItem id="cart-link">
+                  <NavLink class="cart-link-wrap" href='/cart'>
+                    <div>
+                      <span class="cart-count-wrap" style={{ color: '#FFF' }}>{this.aggregatedProdsInCart(this.props.cart)}</span>
+                      <i className="fas fa-shopping-cart" style={{ color: '#FFF' }} />
+                      <p style={{ color: '#FFF' }}>Shopping Cart: ${this.aggregatedPrice(this.props.cart)}</p>
+                    </div>
+                  </NavLink>
+                </NavItem>
+              }
+              id='popup'
+              position='bottom left'
+              size='mini'
+              inverted
+              mouseEnterDelay={1000}
+            />
           </Collapse>
         </Container>
       </Navbar>
