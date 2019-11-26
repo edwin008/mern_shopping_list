@@ -45,7 +45,7 @@ class Checkout extends Component {
 
     const errors = [];
 
-    var phoneno = /^\d{9}$/;
+    var phoneno = /^\d{10}$/;
 
     if (name.length === 0) {
       errors.push("Name can't be empty");
@@ -62,7 +62,7 @@ class Checkout extends Component {
     }
 
     if (phoneNumber) {
-      if (phoneNumber.match(phoneno)) {
+      if (!phoneNumber.match(phoneno)) {
         errors.push("Phone Number should be at least 10 numbers long and of type number");
       }
     } else {
@@ -127,29 +127,29 @@ class Checkout extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    // console.log('ON SUBMIT GOT CALLED');
+    console.log('ON SUBMIT GOT CALLED');
 
-    // const entries = this.props.location.cartProps.cart;
+    const entries = this.props.location.cartProps.cart;
 
-    // console.log("------> ENRTRIES: " + JSON.stringify(entries));
+    console.log("------> ENRTRIES: " + JSON.stringify(entries));
 
-    // const itemsInCart = [];
-    // entries.map(item => {
-    //   let obj = {};
-    //   obj.name = item.name;
-    //   obj.value = item.value;
-    //   obj.size = item.size;
-    //   obj.amount = item.amount;
-    //   itemsInCart.push(obj);
-    // });
-    // const newOrder = {
-    //   name: this.state.name,
-    //   email: this.state.email,
-    //   phoneNumber: this.state.phoneNumber,
-    //   cart: itemsInCart
-    // };
+    const itemsInCart = [];
+    entries.map(item => {
+      let obj = {};
+      obj.name = item.name;
+      obj.value = item.value;
+      obj.size = item.size;
+      obj.amount = item.amount;
+      itemsInCart.push(obj);
+    });
+    const newOrder = {
+      name: this.state.name,
+      email: this.state.email,
+      phoneNumber: this.state.phoneNumber,
+      cart: itemsInCart
+    };
 
-    // this.props.addOrder(newOrder);
+    this.props.addOrder(newOrder);
 
     this.onOpenModal();
   };
@@ -198,17 +198,17 @@ class Checkout extends Component {
         <div>
           {/* <center> */}
           {/* <Modal open={this.state.modalIsOpen} onClose={this.onCloseModal, this.props.clearCart} basic centered={true} size="small"> */}
-          <Modal open={this.state.modalIsOpen} onClose={this.onCloseModal} basic centered={true} size="small" style={{ marginLeft: '30%', marginTop: '15%' }}>
+          <Modal open={this.state.modalIsOpen} onClose={this.onCloseModal, this.props.clearCart} basic centered={true} size="small" style={{ marginLeft: '30%', marginTop: '15%' }}>
             <Header icon='shopping bag' content='Thanks for Shopping!' />
             <Modal.Content>
               <p>Thank You, {this.state.name}! Your order has been completed. We will be in contact with you shortly to finalize your order!</p>
             </Modal.Content>
             <Modal.Actions>
-              <Button color='green' onClick={this.onCloseModal} inverted>
-                <Link to="/">
-                  <Icon name='hand peace' /> See ya!
-                </Link>
-              </Button>
+              <Link to="/">
+                <Button color='green' onClick={this.onCloseModal, this.props.clearCart} inverted>
+                  <Icon name='hand peace' color='blue' /> See ya!
+                </Button>
+              </Link>
             </Modal.Actions>
           </Modal>
           {/* </center> */}
