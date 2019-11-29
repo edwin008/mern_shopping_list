@@ -59,6 +59,7 @@ class ShoppingCart extends Component {
                   <tr>
                     <th id="table-item">Photo</th>
                     <th id="table-item">Name</th>
+                    <th id="table-item">Size</th>
                     <th id="table-item">Quantity</th>
                     <th id="table-item">Price / Unit</th>
                     <th></th>

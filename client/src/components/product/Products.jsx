@@ -53,6 +53,16 @@ class Products extends Component {
     let newProductArr = this.state.productArray.slice();
     newProductArr.map((product) => {
       if (product._id == id) {
+        // if (size === "S") {
+        //   product.size[0]++;
+        // } else if (size === "M") {
+        //   product.size[1]++;
+        // } else if (size === "L") {
+        //   product.size[2]++;
+        // } else {
+        //   //size of XL
+        //   product.size[3]++;
+        // }
         product.size = size
       }
     });

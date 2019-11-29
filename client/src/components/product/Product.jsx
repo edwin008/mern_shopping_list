@@ -61,10 +61,6 @@ const Product = (props) => {
 
 Product.propTypes = {
   item: PropTypes.object.isRequired,
-  // name: PropTypes.string.isRequired,
-  // image: PropTypes.array.isRequired,
-  // value: PropTypes.number.isRequired,
-  // size: PropTypes.string,
   addSize: PropTypes.func,
   addCart: PropTypes.func.isRequired,
   updateSize: PropTypes.func.isRequired
