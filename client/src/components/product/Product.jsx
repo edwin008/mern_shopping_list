@@ -4,7 +4,7 @@ import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
 import './Product.css';
 import PropTypes from 'prop-types';
-import { Card, Image, Button, Segment, Modal, Icon } from 'semantic-ui-react';
+import { Card, Image, Button, Segment, Modal, Icon, Popup } from 'semantic-ui-react';
 import { addSize } from '../../actions/productActions';
 
 
@@ -43,7 +43,18 @@ const Product = (props) => {
             </Card.Description>
             <Card.Content>
               <div>
-                <button class="ui primary button" onClick={props.addCart} size="small">Add to Cart</button>
+                {/* <button class="ui primary button" onClick={props.addCart} size="small">Add to Cart</button> */}
+                <Popup content='Please select a size before adding to the cart'
+                  trigger={
+                    <button class="ui primary button" onClick={() => props.handleAddCartSubmit(item, props.j)} size="small">Add to Cart</button>
+                  }
+                  id='popup'
+                  position='bottom center'
+                  size='mini'
+                  inverted
+                  open
+                  disabled={!props.showAddCartPopup}
+                />
                 <Button animated='vertical' onClick={() => props.openImageModal(item)}>
                   <Button.Content hidden>Zoom</Button.Content>
                   <Button.Content visible>

@@ -14,7 +14,9 @@ class Products extends Component {
     this.state = {
       productArray: this.props.products,
       isOpen: false,
-      imageArray: []
+      imageArray: [],
+      sizeSelected: false,
+      showAddCartPopup: false
     }
   }
 
@@ -28,6 +30,8 @@ class Products extends Component {
         key={item._id}
         item={item}
         addCart={() => this.props.addCart(item, j)}
+        handleAddCartSubmit={this.handleAddCartSubmit}
+        showAddCartPopup={this.state.showAddCartPopup}
       // addSize={() => props.addSize(item, Size)}}
       />
     )
@@ -49,6 +53,22 @@ class Products extends Component {
     return this.state.isOpen;
   }
 
+  handleAddCartSubmit = (item, j) => {
+    if (this.state.sizeSelected) {
+      // this.props.addCart(item, j);
+      console.log("submit handled. addCart action sent");
+      this.setState({
+        sizeSelected: false,
+        showAddCartPopup: false
+      });
+    } else {
+      console.log("show addCartPopup set to true");
+      this.setState({
+        showAddCartPopup: true
+      });
+    }
+  }
+
   updateSize = (id, size) => {
     let newProductArr = this.state.productArray.slice();
     newProductArr.map((product) => {
@@ -67,7 +87,9 @@ class Products extends Component {
       }
     });
     this.setState({
-      productArray: newProductArr
+      productArray: newProductArr,
+      sizeSelected: true,
+      showAddCartPopup: false
     });
     console.log("Product list: " + JSON.stringify(this.state.productArray))
   }
