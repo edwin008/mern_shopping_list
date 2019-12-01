@@ -29,6 +29,7 @@ const CartProduct = props => {
             <i class="plus icon" onClick={props.addProduct} style={{ color: '#077BFF', cursor: 'pointer' }}></i>
           </center>
         </td>
+        <td><center>{props.size}</center></td>
         <td><center>${props.value}</center></td>
         <td>
           <Popup content='Remove all items from this section' trigger={
