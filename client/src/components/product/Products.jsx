@@ -15,14 +15,15 @@ class Products extends Component {
       productArray: this.props.products,
       isOpen: false,
       imageArray: [],
-      sizeSelected: false,
-      showAddCartPopup: false
+      sizeSelected: false
+      // showAddCartPopup: false
     }
   }
 
   renderProductArray = (item, j) => {
     return (
       <Product
+        showPopup={this.state.showPopup[j]}
         updateSize={this.updateSize}
         openImageModal={this.openImageModal}
         closeImageModal={this.closeImageModal}
@@ -30,7 +31,9 @@ class Products extends Component {
         key={item._id}
         item={item}
         addCart={() => this.props.addCart(item, j)}
-        handleAddCartSubmit={this.handleAddCartSubmit}
+        setSizeSelectedState={this.setSizeSelectedState}
+        getSizeSelectedState={this.getSizeSelectedState}
+        // handleAddCartSubmit={this.handleAddCartSubmit}
         showAddCartPopup={this.state.showAddCartPopup}
       // addSize={() => props.addSize(item, Size)}}
       />
@@ -53,21 +56,21 @@ class Products extends Component {
     return this.state.isOpen;
   }
 
-  handleAddCartSubmit = (item, j) => {
-    if (this.state.sizeSelected) {
-      // this.props.addCart(item, j);
-      console.log("submit handled. addCart action sent");
-      this.setState({
-        sizeSelected: false,
-        showAddCartPopup: false
-      });
-    } else {
-      console.log("show addCartPopup set to true");
-      this.setState({
-        showAddCartPopup: true
-      });
-    }
-  }
+  // handleAddCartSubmit = (item, j) => {
+  //   if (this.state.sizeSelected) {
+  //     // this.props.addCart(item, j);
+  //     console.log("submit handled. addCart action sent");
+  //     this.setState({
+  //       sizeSelected: false,
+  //       showAddCartPopup: false
+  //     });
+  //   } else {
+  //     console.log("show addCartPopup set to true");
+  //     this.setState({
+  //       showAddCartPopup: true
+  //     });
+  //   }
+  // }
 
   updateSize = (id, size) => {
     let newProductArr = this.state.productArray.slice();
@@ -88,10 +91,24 @@ class Products extends Component {
     });
     this.setState({
       productArray: newProductArr,
-      sizeSelected: true,
-      showAddCartPopup: false
+      sizeSelected: true
+      // showAddCartPopup: false
     });
     console.log("Product list: " + JSON.stringify(this.state.productArray))
+
+    return false; //showAddCartPopup: false
+  }
+
+  setSizeSelectedState = (stateBool) => {
+    this.setState({ sizeSelected: stateBool });
+  }
+
+  handleModalClose = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+  }
+
+  getSizeSelectedState = () => {
+    return this.state.sizeSelected;
   }
 
   produceImageArray = item => {
@@ -99,17 +116,17 @@ class Products extends Component {
       <div data-src={image} />
     ))
 
-    return imageArray
+    return imageArray;
   }
 
   render() {
     return (
       <Fragment>
         <div className='container'>
-          <Modal open={this.state.isOpen} basic centered={true} size="small" style={{ marginLeft: '30%' }}>
+          {/* <Modal open={this.state.isOpen} basic centered={true} size="small" style={{ marginLeft: '30%' }}>
             <Modal.Actions>
               <center>
-                <Button color='red' size='large' onClick={() => { this.setState({ isOpen: false }) }} inverted>
+                <Button color='red' size='large' onClick={() => this.handleModalClose()} inverted>
                   <Icon name='zoom out' /> Go back
             </Button>
               </center>
@@ -117,7 +134,7 @@ class Products extends Component {
             <Modal.Content>
               <AwesomeSlider className='aws-btn' style={{ height: '55em' }} bullets={false}>{this.state.imageArray}</AwesomeSlider>
             </Modal.Content>
-          </Modal>
+          </Modal> */}
           <div className='wrapper'>
             {this.state.productArray.map((item, j) => this.renderProductArray(item, j))}
           </div>
