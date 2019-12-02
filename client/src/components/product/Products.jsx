@@ -59,7 +59,6 @@ class Products extends Component {
       this.props.addCart(item, j);
       const newArray = this.state.showAddCartPopup.slice();
       newArray[j] = false;
-      console.log("PRINTING THE NEW ARRAY - SIZE IS SELECTED: " + JSON.stringify(newArray));
       this.setState({
         sizeSelected: false,
         showAddCartPopup: newArray
@@ -67,8 +66,6 @@ class Products extends Component {
     } else {
       const newArray_test = this.state.showAddCartPopup.slice();
       newArray_test[j] = true;
-      console.log("PRINTING THE INDEX J: " + j)
-      console.log("PRINTING THE NEW ARRAY - SIZE IS NOT SELECTED: " + JSON.stringify(newArray_test));
       this.setState({
         showAddCartPopup: newArray_test
       });

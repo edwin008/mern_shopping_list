@@ -15,7 +15,7 @@ const Product = (props) => {
     <div data-src={image} />
   ));
 
-  console.log(productImageArray);
+  // console.log(productImageArray);
 
   return (
     <Fragment>
