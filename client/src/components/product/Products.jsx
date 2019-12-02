@@ -15,26 +15,24 @@ class Products extends Component {
       productArray: this.props.products,
       isOpen: false,
       imageArray: [],
-      sizeSelected: false
-      // showAddCartPopup: false
+      sizeSelected: false,
+      showAddCartPopup: [false, false]
     }
   }
 
   renderProductArray = (item, j) => {
     return (
       <Product
-        showPopup={this.state.showPopup[j]}
         updateSize={this.updateSize}
         openImageModal={this.openImageModal}
         closeImageModal={this.closeImageModal}
         isOpen={this.state.isOpen}
         key={item._id}
         item={item}
+        j={j}
         addCart={() => this.props.addCart(item, j)}
-        setSizeSelectedState={this.setSizeSelectedState}
-        getSizeSelectedState={this.getSizeSelectedState}
-        // handleAddCartSubmit={this.handleAddCartSubmit}
-        showAddCartPopup={this.state.showAddCartPopup}
+        handleAddCartSubmit={this.handleAddCartSubmit}
+        showAddCartPopup={this.state.showAddCartPopup[j]}
       // addSize={() => props.addSize(item, Size)}}
       />
     )
@@ -56,23 +54,28 @@ class Products extends Component {
     return this.state.isOpen;
   }
 
-  // handleAddCartSubmit = (item, j) => {
-  //   if (this.state.sizeSelected) {
-  //     // this.props.addCart(item, j);
-  //     console.log("submit handled. addCart action sent");
-  //     this.setState({
-  //       sizeSelected: false,
-  //       showAddCartPopup: false
-  //     });
-  //   } else {
-  //     console.log("show addCartPopup set to true");
-  //     this.setState({
-  //       showAddCartPopup: true
-  //     });
-  //   }
-  // }
+  handleAddCartSubmit = (item, j) => {
+    if (this.state.sizeSelected) {
+      this.props.addCart(item, j);
+      const newArray = this.state.showAddCartPopup.slice();
+      newArray[j] = false;
+      console.log("PRINTING THE NEW ARRAY - SIZE IS SELECTED: " + JSON.stringify(newArray));
+      this.setState({
+        sizeSelected: false,
+        showAddCartPopup: newArray
+      });
+    } else {
+      const newArray_test = this.state.showAddCartPopup.slice();
+      newArray_test[j] = true;
+      console.log("PRINTING THE INDEX J: " + j)
+      console.log("PRINTING THE NEW ARRAY - SIZE IS NOT SELECTED: " + JSON.stringify(newArray_test));
+      this.setState({
+        showAddCartPopup: newArray_test
+      });
+    }
+  }
 
-  updateSize = (id, size) => {
+  updateSize = (id, size, j) => {
     let newProductArr = this.state.productArray.slice();
     newProductArr.map((product) => {
       if (product._id == id) {
@@ -89,26 +92,14 @@ class Products extends Component {
         product.size = size
       }
     });
+    const newArray = this.state.showAddCartPopup.slice();
+    newArray[j] = false;
     this.setState({
       productArray: newProductArr,
-      sizeSelected: true
-      // showAddCartPopup: false
+      sizeSelected: true,
+      showAddCartPopup: newArray
     });
-    console.log("Product list: " + JSON.stringify(this.state.productArray))
-
-    return false; //showAddCartPopup: false
-  }
-
-  setSizeSelectedState = (stateBool) => {
-    this.setState({ sizeSelected: stateBool });
-  }
-
-  handleModalClose = () => {
-    this.setState({ isOpen: !this.state.isOpen });
-  }
-
-  getSizeSelectedState = () => {
-    return this.state.sizeSelected;
+    // console.log("Product list: " + JSON.stringify(this.state.productArray))
   }
 
   produceImageArray = item => {
@@ -116,17 +107,17 @@ class Products extends Component {
       <div data-src={image} />
     ))
 
-    return imageArray;
+    return imageArray
   }
 
   render() {
     return (
       <Fragment>
         <div className='container'>
-          {/* <Modal open={this.state.isOpen} basic centered={true} size="small" style={{ marginLeft: '30%' }}>
+          <Modal open={this.state.isOpen} basic centered={true} size="small" style={{ marginLeft: '30%' }}>
             <Modal.Actions>
               <center>
-                <Button color='red' size='large' onClick={() => this.handleModalClose()} inverted>
+                <Button color='red' size='large' onClick={() => { this.setState({ isOpen: false }) }} inverted>
                   <Icon name='zoom out' /> Go back
             </Button>
               </center>
@@ -134,7 +125,7 @@ class Products extends Component {
             <Modal.Content>
               <AwesomeSlider className='aws-btn' style={{ height: '55em' }} bullets={false}>{this.state.imageArray}</AwesomeSlider>
             </Modal.Content>
-          </Modal> */}
+          </Modal>
           <div className='wrapper'>
             {this.state.productArray.map((item, j) => this.renderProductArray(item, j))}
           </div>

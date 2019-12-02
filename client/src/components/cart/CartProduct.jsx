@@ -20,6 +20,7 @@ const CartProduct = props => {
           <img src={props.image[0]} style={{ height: '12.5%', paddingLeft: '25%' }} />
         </td>
         <td style={{ textAlign: 'center' }}>{props.name}</td>
+        <td><center>{props.size}</center></td>
         <td>
           <center>
             {/* <button onClick={props.removeProduct}> - </button> */}
@@ -29,7 +30,6 @@ const CartProduct = props => {
             <i class="plus icon" onClick={props.addProduct} style={{ color: '#077BFF', cursor: 'pointer' }}></i>
           </center>
         </td>
-        <td><center>{props.size}</center></td>
         <td><center>${props.value}</center></td>
         <td>
           <Popup content='Remove all items from this section' trigger={

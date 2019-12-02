@@ -4,7 +4,7 @@ const initialState = [];
 
 // const ShoppingCart_NoItem = (ShoppingCart, CartItem) => ShoppingCart.filter(CartProduct => CartProduct._id !== CartItem._id);
 const ShoppingCart_NoItem = (ShoppingCart, CartItem) => ShoppingCart.filter(CartProduct => CartProduct._id !== CartItem._id);       //cartWithoutItem
-const ShoppingCart_WithItem = (ShoppingCart, CartItem) => ShoppingCart.filter(CartProduct => CartProduct._id === CartItem._id)[0];  //itemInCart
+const ShoppingCart_WithItem = (ShoppingCart, CartItem) => ShoppingCart.filter(CartProduct => CartProduct._id === CartItem._id);  //itemInCart
 
 // const itemInCartBySize = (itemsInShoppingCart, itemInQuestion) => {
 //   for (let i = 0; i < itemsInShoppingCart.length; i++) {
@@ -27,9 +27,9 @@ const AddCart = (ShoppingCart, CartItem) => {
   const cartProduct = itemInCartBySize(ShoppingCart_WithItem(ShoppingCart, CartItem), CartItem);
   return cartProduct === undefined
     // ? [...ShoppingCart_NoItem(ShoppingCart, CartItem), { ...CartItem, amount: 1 }]
-    ? [...ShoppingCart_NoItem(ShoppingCart, CartItem), nonMatchingSize_itemInCart(ShoppingCart_NoItem(ShoppingCart, CartItem)), { ...CartItem, amount: 1 }]
+    ? [...ShoppingCart_NoItem(ShoppingCart, CartItem), nonMatchingSize_itemInCart(ShoppingCart_WithItem(ShoppingCart, CartItem)), { ...CartItem, amount: 1 }]
     // : [...ShoppingCart_NoItem(ShoppingCart, CartItem), { ...cartProduct, amount: cartProduct.amount + 1 }]
-    : [...ShoppingCart_NoItem(ShoppingCart, CartItem), nonMatchingSize_itemInCart(ShoppingCart_NoItem(ShoppingCart, CartItem)), { ...cartProduct, amount: cartProduct.amount + 1 }]
+    : [...ShoppingCart_NoItem(ShoppingCart, CartItem), nonMatchingSize_itemInCart(ShoppingCart_WithItem(ShoppingCart, CartItem)), { ...cartProduct, amount: cartProduct.amount + 1 }]
 };
 
 const RemoveCart = (ShoppingCart, CartItem) => {
