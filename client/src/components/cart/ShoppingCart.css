@@ -24,6 +24,11 @@
     margin-right: 2%;
     width: 80%;
 }
+
+.cart-totalPrice{
+    margin-left: 20%;
+}
+
 .tbl-row{
     /* position: relative!important; */
     height: 100%!important;

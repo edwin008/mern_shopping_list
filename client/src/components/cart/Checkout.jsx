@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import Modal from 'react-modal';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { clearCart } from '../../actions/shoppingCartActions';
 import { addOrder } from '../../actions/orderActions';
@@ -131,27 +131,27 @@ class Checkout extends Component {
 
     // console.log('ON SUBMIT GOT CALLED');
 
-    // const entries = this.props.location.cartProps.cart;
+    const entries = this.props.location.cartProps.cart;
 
     // console.log("------> ENRTRIES: " + JSON.stringify(entries));
 
-    // const itemsInCart = [];
-    // entries.map(item => {
-    //   let obj = {};
-    //   obj.name = item.name;
-    //   obj.value = item.value;
-    //   obj.size = item.size;
-    //   obj.amount = item.amount;
-    //   itemsInCart.push(obj);
-    // });
-    // const newOrder = {
-    //   name: this.state.name,
-    //   email: this.state.email,
-    //   phoneNumber: this.state.phoneNumber,
-    //   cart: itemsInCart
-    // };
+    const itemsInCart = [];
+    entries.map(item => {
+      let obj = {};
+      obj.name = item.name;
+      obj.value = item.value;
+      obj.size = item.size;
+      obj.amount = item.amount;
+      itemsInCart.push(obj);
+    });
+    const newOrder = {
+      name: this.state.name,
+      email: this.state.email,
+      phoneNumber: this.state.phoneNumber,
+      cart: itemsInCart
+    };
 
-    // this.props.addOrder(newOrder);
+    this.props.addOrder(newOrder);
 
     this.onOpenModal();
   };
@@ -198,7 +198,7 @@ class Checkout extends Component {
           </Segment>
         </div>
         <div>
-          <Modal open={this.state.modalIsOpen} onClose={this.onCloseModal, this.props.clearCart} basic centered={true} size="small" style={{ marginLeft: '30%', marginTop: '15%' }}>
+          <Modal open={this.state.modalIsOpen} basic centered={true} size="small" style={{ marginLeft: '30%', marginTop: '15%' }}>
             <Header icon='shopping bag' content='Thanks for Shopping!' />
             <Modal.Content>
               <p>Thank You, {this.state.name}! Your order has been completed. We will be in contact with you shortly to finalize your order!</p>

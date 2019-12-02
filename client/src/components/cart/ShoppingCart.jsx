@@ -71,7 +71,8 @@ class ShoppingCart extends Component {
                     <td />
                     <td />
                     <td />
-                    <p classname="cart-totalPrice">Total: ${totalCartPrice(this.props.cart)}</p>
+                    <td />
+                    <p class="cart-totalPrice">Total: ${totalCartPrice(this.props.cart)}</p>
                     <Link to={{
                       pathname: "/checkout",
                       cartProps: {
