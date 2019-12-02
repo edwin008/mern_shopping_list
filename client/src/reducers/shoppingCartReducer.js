@@ -31,9 +31,9 @@ const AddCart = (ShoppingCart, CartItem) => {
   // console.log("SHOPPING CART CONSOLE LOG:" + JSON.stringify(ShoppingCart_NoItem(ShoppingCart, CartItem)));
   // const cartProduct = itemInCartBySize(ShoppingCart_WithItem(ShoppingCart, CartItem), CartItem);
   return cartProduct === undefined
-    ? [...ShoppingCart_NoItem(ShoppingCart, CartItem), ...ShoppingCart_IDMatchSizeNoMatch(ShoppingCart, CartItem), { ...CartItem, amount: 1 }]
+    ? [{ ...CartItem, amount: 1, timeAdded: new Date() }, ...ShoppingCart_NoItem(ShoppingCart, CartItem), ...ShoppingCart_IDMatchSizeNoMatch(ShoppingCart, CartItem)]
     // ? [...ShoppingCart_NoItem(ShoppingCart, CartItem), nonMatchingSize_itemInCart(ShoppingCart_WithItem(ShoppingCart, CartItem)), { ...CartItem, amount: 1 }]
-    : [...ShoppingCart_NoItem(ShoppingCart, CartItem), ...ShoppingCart_IDMatchSizeNoMatch(ShoppingCart, CartItem), { ...cartProduct, amount: cartProduct.amount + 1 }]
+    : [{ ...cartProduct, amount: cartProduct.amount + 1 }, ...ShoppingCart_NoItem(ShoppingCart, CartItem), ...ShoppingCart_IDMatchSizeNoMatch(ShoppingCart, CartItem)]
   // : [...ShoppingCart_NoItem(ShoppingCart, CartItem), nonMatchingSize_itemInCart(ShoppingCart_WithItem(ShoppingCart, CartItem)), { ...cartProduct, amount: cartProduct.amount + 1 }]
 };
 
@@ -41,7 +41,7 @@ const RemoveCart = (ShoppingCart, CartItem) => {
   return CartItem.amount === 1
     ? [...ShoppingCart_NoItem(ShoppingCart, CartItem), ...ShoppingCart_IDMatchSizeNoMatch(ShoppingCart, CartItem)]
     // ? [...ShoppingCart_NoItem(ShoppingCart, CartItem), nonMatchingSize_itemInCart(ShoppingCart_NoItem(ShoppingCart, CartItem))]
-    : [...ShoppingCart_NoItem(ShoppingCart, CartItem), ...ShoppingCart_IDMatchSizeNoMatch(ShoppingCart, CartItem), { ...CartItem, amount: CartItem.amount - 1 }]
+    : [{ ...CartItem, amount: CartItem.amount - 1 }, ...ShoppingCart_NoItem(ShoppingCart, CartItem), ...ShoppingCart_IDMatchSizeNoMatch(ShoppingCart, CartItem)]
   // : [...ShoppingCart_NoItem(ShoppingCart, CartItem), nonMatchingSize_itemInCart(ShoppingCart_NoItem(ShoppingCart, CartItem)), { ...CartItem, amount: CartItem.amount - 1 }]
 };
 

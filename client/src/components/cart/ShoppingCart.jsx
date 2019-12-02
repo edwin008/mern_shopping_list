@@ -23,7 +23,7 @@ class ShoppingCart extends Component {
 
   render() {
     const arrange = product => {
-      return product.sort((x, y) => x._id < y._id);
+      return product.sort((x, y) => x.timeAdded - y.timeAdded);
     };
 
     const cartProducts =
