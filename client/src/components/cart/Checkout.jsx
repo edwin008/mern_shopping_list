@@ -45,13 +45,9 @@ class Checkout extends Component {
 
     const errors = [];
 
-<<<<<<< HEAD
-    var phoneno = /^\d{10}$/;
-=======
     // var phoneno = /^\d{10}$/;
     var phoneno = /^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/;
 
->>>>>>> EZ_branch
 
     if (name.length === 0) {
       errors.push("Name can't be empty");
@@ -69,11 +65,7 @@ class Checkout extends Component {
 
     if (phoneNumber) {
       if (!phoneNumber.match(phoneno)) {
-<<<<<<< HEAD
-        errors.push("Phone Number should be at least 10 numbers long and of type number");
-=======
         errors.push("Please provide a valide phone number");
->>>>>>> EZ_branch
       }
     } else {
       errors.push("Please provide a phone number");
