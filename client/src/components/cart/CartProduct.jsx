@@ -20,6 +20,7 @@ const CartProduct = props => {
           <img src={props.image[0]} style={{ height: '12.5%', paddingLeft: '25%' }} />
         </td>
         <td style={{ textAlign: 'center' }}>{props.name}</td>
+        <td><center>{props.size}</center></td>
         <td>
           <center>
             {/* <button onClick={props.removeProduct}> - </button> */}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import Modal from 'react-modal';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { clearCart } from '../../actions/shoppingCartActions';
 import { addOrder } from '../../actions/orderActions';
@@ -14,7 +14,7 @@ class Checkout extends Component {
   state = {
     name: "",
     email: "",
-    phoneNumber: 0,
+    phoneNumber: "",
     errorsList: [],
     renderErrorList: false,
     modalIsOpen: false
@@ -45,7 +45,13 @@ class Checkout extends Component {
 
     const errors = [];
 
+<<<<<<< HEAD
     var phoneno = /^\d{10}$/;
+=======
+    // var phoneno = /^\d{10}$/;
+    var phoneno = /^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/;
+
+>>>>>>> EZ_branch
 
     if (name.length === 0) {
       errors.push("Name can't be empty");
@@ -63,7 +69,11 @@ class Checkout extends Component {
 
     if (phoneNumber) {
       if (!phoneNumber.match(phoneno)) {
+<<<<<<< HEAD
         errors.push("Phone Number should be at least 10 numbers long and of type number");
+=======
+        errors.push("Please provide a valide phone number");
+>>>>>>> EZ_branch
       }
     } else {
       errors.push("Please provide a phone number");
@@ -196,22 +206,30 @@ class Checkout extends Component {
           </Segment>
         </div>
         <div>
+<<<<<<< HEAD
           {/* <center> */}
           {/* <Modal open={this.state.modalIsOpen} onClose={this.onCloseModal, this.props.clearCart} basic centered={true} size="small"> */}
           <Modal open={this.state.modalIsOpen} onClose={this.onCloseModal, this.props.clearCart} basic centered={true} size="small" style={{ marginLeft: '30%', marginTop: '15%' }}>
+=======
+          <Modal open={this.state.modalIsOpen} basic centered={true} size="small" style={{ marginLeft: '30%', marginTop: '15%' }}>
+>>>>>>> EZ_branch
             <Header icon='shopping bag' content='Thanks for Shopping!' />
             <Modal.Content>
               <p>Thank You, {this.state.name}! Your order has been completed. We will be in contact with you shortly to finalize your order!</p>
             </Modal.Content>
             <Modal.Actions>
               <Link to="/">
+<<<<<<< HEAD
                 <Button color='green' onClick={this.onCloseModal, this.props.clearCart} inverted>
                   <Icon name='hand peace' color='blue' /> See ya!
+=======
+                <Button color='green' size='large' onClick={this.onCloseModal, this.props.clearCart} inverted>
+                  <Icon name='hand peace' /> See ya!
+>>>>>>> EZ_branch
                 </Button>
               </Link>
             </Modal.Actions>
           </Modal>
-          {/* </center> */}
         </div>
       </div>
     );

@@ -23,7 +23,7 @@ class ShoppingCart extends Component {
 
   render() {
     const arrange = product => {
-      return product.sort((x, y) => x._id < y._id);
+      return product.sort((x, y) => x.timeAdded - y.timeAdded);
     };
 
     const cartProducts =
@@ -59,6 +59,7 @@ class ShoppingCart extends Component {
                   <tr>
                     <th id="table-item">Photo</th>
                     <th id="table-item">Name</th>
+                    <th id="table-item">Size</th>
                     <th id="table-item">Quantity</th>
                     <th id="table-item">Price / Unit</th>
                     <th></th>
@@ -70,7 +71,8 @@ class ShoppingCart extends Component {
                     <td />
                     <td />
                     <td />
-                    <p classname="cart-totalPrice">Total: ${totalCartPrice(this.props.cart)}</p>
+                    <td />
+                    <p class="cart-totalPrice">Total: ${totalCartPrice(this.props.cart)}</p>
                     <Link to={{
                       pathname: "/checkout",
                       cartProps: {
