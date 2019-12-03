@@ -206,26 +206,15 @@ class Checkout extends Component {
           </Segment>
         </div>
         <div>
-<<<<<<< HEAD
-          {/* <center> */}
-          {/* <Modal open={this.state.modalIsOpen} onClose={this.onCloseModal, this.props.clearCart} basic centered={true} size="small"> */}
-          <Modal open={this.state.modalIsOpen} onClose={this.onCloseModal, this.props.clearCart} basic centered={true} size="small" style={{ marginLeft: '30%', marginTop: '15%' }}>
-=======
           <Modal open={this.state.modalIsOpen} basic centered={true} size="small" style={{ marginLeft: '30%', marginTop: '15%' }}>
->>>>>>> EZ_branch
             <Header icon='shopping bag' content='Thanks for Shopping!' />
             <Modal.Content>
               <p>Thank You, {this.state.name}! Your order has been completed. We will be in contact with you shortly to finalize your order!</p>
             </Modal.Content>
             <Modal.Actions>
               <Link to="/">
-<<<<<<< HEAD
-                <Button color='green' onClick={this.onCloseModal, this.props.clearCart} inverted>
-                  <Icon name='hand peace' color='blue' /> See ya!
-=======
                 <Button color='green' size='large' onClick={this.onCloseModal, this.props.clearCart} inverted>
                   <Icon name='hand peace' /> See ya!
->>>>>>> EZ_branch
                 </Button>
               </Link>
             </Modal.Actions>
